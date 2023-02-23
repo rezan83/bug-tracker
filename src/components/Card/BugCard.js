@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./card.css";
+import "./Bugcard.css";
 
-function Card() {
+function BugCard() {
   return (
     <div className="add-issue">
       <form>
@@ -27,4 +27,4 @@ function Card() {
   );
 }
 
-export default Card;
+export default BugCard;
