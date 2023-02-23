@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
-import Card from './components/Card/Card';
-import Issues from './components/Issues/Issues';
+import BugCard from './components/Card/BugCard';
+
 import BugsPeriorityPie from './components/BugsPeriorityPie';
 import BugsSolvedPie from './components/BugsSolvedPie';
 import {bugsData} from "./bugsData"
@@ -29,8 +29,8 @@ function App() {
       <header className="App-header">
        <h1>Bug Tracker</h1>
       </header>
-      <Card />
-      <Issues/>
+      <BugCard />
+     
       <BugsPeriorityPie priorityData={priorityData} />
       <BugsSolvedPie solvedData={solvedData} />
     </div>
