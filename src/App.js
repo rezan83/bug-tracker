@@ -31,8 +31,8 @@ function App() {
       </header>
       <BugCard />
      
-      <BugsPeriorityPie priorityData={priorityData} />
-      <BugsSolvedPie solvedData={solvedData} />
+      {/* <BugsPeriorityPie priorityData={priorityData} />
+      <BugsSolvedPie solvedData={solvedData} /> */}
     </div>
   );
 }

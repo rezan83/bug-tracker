@@ -1,53 +1,58 @@
-import React from "react";
+import React, { useState } from 'react';
 
-import "./bugcard.css";
+import './bugcard.css';
 
 function BugCard() {
   const [bugs, setBugs] = useState([]);
   const [newBug, setNewBug] = useState({
-    title: "",
-    description: "",
+    id: "0",
+    title: '',
+    description: '',
     priority: 1,
     solved: false
   });
-   const handleAddBug = () => {
+  const handleAddBug = () => {
+    const id = Math.random() + '';
+   
     setBugs([...bugs, newBug]);
     setNewBug({
-      title: "",
-      description: "",
+      id,
+      title: '',
+      description: '',
       priority: 1,
       solved: false
     });
   };
 
-  const handleDeleteBug = (index) => {
-    const newBugs = [...bugs];
-    newBugs.splice(index, 1);
-    setBugs(newBugs);
+  const handleDeleteBug = id => {
+    // const newBugs = [...bugs];
+    // newBugs.splice(index, 1);
+    // setBugs(newBugs);
+    setBugs(bugs.filter(bug => bug.id !== id));
   };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { name, value } = event.target;
     setNewBug({ ...newBug, [name]: value });
   };
 
-  const handlePriorityChange = (event) => {
+  const handlePriorityChange = event => {
     const { value } = event.target;
     setNewBug({ ...newBug, priority: Number(value) });
   };
 
-  const handleSolvedChange = (event) => {
+  const handleSolvedChange = event => {
     const { checked } = event.target;
     setNewBug({ ...newBug, solved: checked });
   };
 
-  const getBugTitleColor = (priority) => {
+  const getBugTitleColor = priority => {
     if (priority === 1) {
-      return "orange";
+      return 'orange';
     } else if (priority === 2) {
-      return "green";
+      return 'green';
     } else {
-      return "red";
+      return 'red';
     }
   };
 
@@ -55,11 +60,10 @@ function BugCard() {
     <div className="card">
       <h1>Bugs</h1>
       <form
-        onSubmit={(event) => {
+        onSubmit={event => {
           event.preventDefault();
           handleAddBug();
-        }}
-      >
+        }}>
         <label htmlFor="title">Title</label>
         <input
           type="text"
@@ -84,8 +88,7 @@ function BugCard() {
           id="priority"
           name="priority"
           value={newBug.priority}
-          onChange={handlePriorityChange}
-        >
+          onChange={handlePriorityChange}>
           <option value="1">Low</option>
           <option value="2">Normal</option>
           <option value="3">Critical</option>
@@ -103,13 +106,13 @@ function BugCard() {
         <button type="submit">Add Bug</button>
       </form>
 
-      {bugs.map((bug, index) => (
-        <div className="bug" key={index}>
+      {bugs.map(bug => (
+        <div className="bug" key={bug.id}>
           <h2 style={{ color: getBugTitleColor(bug.priority) }}>{bug.title}</h2>
           <p>{bug.description}</p>
           <p>Priority: {bug.priority}</p>
-          <p>Solved: {bug.solved ? "Yes" : "No"}</p>
-          <button onClick={() => handleDeleteBug(index)}>Delete Bug</button>
+          <p>Solved: {bug.solved ? 'Yes' : 'No'}</p>
+          <button onClick={() => handleDeleteBug(bug.id)}>Delete Bug</button>
         </div>
       ))}
     </div>
