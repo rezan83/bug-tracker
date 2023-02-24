@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import BugsList from './components/BugsList/BugsList';
 import BugForm from './components/BugForm';
 
-
-// import BugsPeriorityPie from './components/BugsPeriorityPie';
-// import BugsSolvedPie from './components/BugsSolvedPie';
+import BugsPeriorityPie from './components/BugsPeriorityPie';
+import BugsSolvedPie from './components/BugsSolvedPie';
 import { bugsData } from './bugsData';
+import { usePopulateCharts } from './hooks/usePopulateCharts';
+import { useFetchAllBugs } from './hooks/useFetchAllBugs';
 //the Issues is going to load when we click on a btn , I made it here just to see the style
 function App() {
   // const [solvedData, setSolvedData] = useState([]);
@@ -14,30 +15,25 @@ function App() {
   useEffect(() => {
     setBugsDataSate(bugsData);
   }, []);
-
-  // useEffect(() => {
-  //   let solvedCount = bugsData.filter(bug => bug.solved).length;
-  //   setSolvedData([bugsData.length - solvedCount, solvedCount]);
-  //   setPriorityData(
-  //     bugsData.reduce(
-  //       (accu, next) => {
-  //         accu[next.priority - 1] += 1;
-  //         return accu;
-  //       },
-  //       [0, 0, 0]
-  //     )
-  //   );
-  //   console.log(priorityData, solvedData)
-  // }, [bugsData]);
+  // const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
+  // const {priorityData, solvedData} = usePopulateCharts(bugsDataSate)
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Bug Tracker</h1>
       </header>
-      <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate}/>
-      <BugsList bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
+      {/* {fetchingState.isLoading && <h1>Loading </h1>}
+      {fetchingState.isError && <h1>Error </h1>}
+      {fetchingState.isReady && (
+        <>
+          <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
+          <BugsList bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />{' '}
+        </>
+      )} */}
 
+      <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
+      <BugsList bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
       {/* <BugsPeriorityPie priorityData={priorityData} />
       <BugsSolvedPie solvedData={solvedData} /> */}
     </div>
