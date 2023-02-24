@@ -1,6 +1,5 @@
 import React from 'react';
 import BugCard from './BugCard';
-
 import './bugcard.css';
 
 function BugsList({ bugsDataSate, setBugsDataSate, handleGlobalChange }) {
@@ -16,7 +15,7 @@ function BugsList({ bugsDataSate, setBugsDataSate, handleGlobalChange }) {
   };
 
   return (
-    <div className="card">
+    <div className="card w-100">
       <h1>Bugs</h1>
 
       {bugsDataSate.map(bug => {

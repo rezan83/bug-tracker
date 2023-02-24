@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import 'bootstrap/dist/css/bootstrap.min.css';
 const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
   const [newBug, setNewBug] = useState({
     id: '0',
@@ -27,32 +31,25 @@ const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
   };
 
   return (
-    <form onSubmit={handleAddBug}>
-      <label htmlFor="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        value={newBug.title}
-        onChange={handleChange}
-        required
-      />
+    <Form className="w-25 p-3 m-auto" onSubmit={handleAddBug}>
+        <Form.Group as={Row} >
+          <Form.Label>Title</Form.Label>
+          <Form.Control type="text" name="title" id="title" value={newBug.title} onChange={handleChange} required />
+        </Form.Group>
 
-      <label htmlFor="description">Description</label>
-      <textarea
-        id="description"
-        name="description"
-        value={newBug.description}
-        onChange={handleChange}
-        required
-      />
+        <Form.Group as={Row} >
+          <Form.Label>Description</Form.Label>
+          <Form.Control type="text" name="description" id="description" value={newBug.description} onChange={handleChange} required />
+        </Form.Group>
 
-      <label htmlFor="priority">Priority</label>
-      <select id="priority" name="priority" value={newBug.priority} onChange={handleChange}>
-        <option value="1">Low</option>
-        <option value="2">Normal</option>
-        <option value="3">Critical</option>
-      </select>
+        <Form.Group as={Row} >
+        <Form.Label>Priority</Form.Label>
+          <Form.Select defasltValue="Choose..." name="priority" id="priority" value={newBug.priority}  onChange={handleChange}>
+            <option  value="1">Low</option>
+            <option value="2">Normal</option>
+            <option  value="3">Critical</option>
+          </Form.Select>
+        </Form.Group>
 
       {/* <label htmlFor="solved">Solved</label>
         <input
@@ -62,9 +59,8 @@ const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
           checked={newBug.solved}
           onChange={handleSolvedChange}
         /> */}
-
-      <button type="submit">Add Bug</button>
-    </form>
+        <Button className="w-100 " variant="primary" size="sm" type="submit">add</Button>
+      </Form>
   );
 };
 

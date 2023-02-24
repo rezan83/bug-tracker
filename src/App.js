@@ -7,6 +7,7 @@ import BugsSolvedPie from './components/BugsSolvedPie';
 import { bugsData } from './bugsData';
 import { usePopulateCharts } from './hooks/usePopulateCharts';
 import { useFetchAllBugs } from './hooks/useFetchAllBugs';
+import NavBar from './components/NavBar/NavBar';
 //the Issues is going to load when we click on a btn , I made it here just to see the style
 function App() {
   // const [newBug, setNewBug] = useState({
@@ -34,6 +35,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <NavBar/>
         <h1>Bug Tracker</h1>
       </header>
       {/* {fetchingState.isLoading && <h1>Loading </h1>}
