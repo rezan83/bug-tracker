@@ -4,17 +4,17 @@
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.card .card-header{
+.card .card-header {
   color: white;
 }
-.card .bug-priority-low {
-  background-color: hsl(134, 62%, 31%);
+.card .bug-priority.low {
+  background-color: var(--color-low);
 }
-.card .bug-priority-normal {
-  background-color: hsl(211, 100%, 43%);
+.card .bug-priority.normal {
+  background-color: var(--color-normal);
 }
-.card .bug-priority-critical {
-  background-color: hsl(271, 76%, 53%);
+.card .bug-priority.critical {
+  background-color: var(--color-critical);
 }
 form {
   display: flex;

@@ -11,7 +11,7 @@ function BugCard({ bug, handleDeleteBug }) {
   };
   return (
     <div className="bug">
-      <header className={`card-header bug-priority-${getPeriorityName(priority)}`}>
+      <header className={`card-header bug-priority ${getPeriorityName(priority)}`}>
         <h2>{bug.title}</h2>
       </header>
       <p>{bug.description}</p>

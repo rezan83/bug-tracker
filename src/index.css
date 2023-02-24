@@ -1,3 +1,9 @@
+:root {
+  --color-low: hsl(134, 62%, 31%);
+  --color-normal:  hsl(211, 100%, 43%);
+  --color-critical: hsl(271, 76%, 53%);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
