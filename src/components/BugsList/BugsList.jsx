@@ -3,7 +3,7 @@ import BugCard from './BugCard';
 
 import './bugcard.css';
 
-function BugsList({ bugsDataSate, setBugsDataSate }) {
+function BugsList({ bugsDataSate, setBugsDataSate, handleGlobalChange }) {
   const handleDeleteBug = id => {
     // this is ok because you are copying the array
     // and splice is probably faster than filter
@@ -20,7 +20,14 @@ function BugsList({ bugsDataSate, setBugsDataSate }) {
       <h1>Bugs</h1>
 
       {bugsDataSate.map(bug => {
-        return <BugCard bug={bug} handleDeleteBug={handleDeleteBug} key={bug.id} />;
+        return (
+          <BugCard
+            bug={bug}
+            handleDeleteBug={handleDeleteBug}
+            handleGlobalChange={handleGlobalChange}
+            key={bug.id}
+          />
+        );
       })}
     </div>
   );

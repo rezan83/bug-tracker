@@ -16,6 +16,12 @@
 .card .bug-priority.critical {
   background-color: var(--color-critical);
 }
+.card .bug.solved {
+  background-color: var(--color-solved);
+}
+.card .btn.solved {
+  background-color: var(--color-solved);
+}
 form {
   display: flex;
   flex-direction: column;
