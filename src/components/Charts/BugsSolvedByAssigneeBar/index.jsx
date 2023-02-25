@@ -13,7 +13,6 @@ import { Bar } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function BugsSolvedByAssigneeBar({ solvedBy }) {
-  console.log(Object.keys(solvedBy));
   const options = {
     indexAxis: 'y',
     elements: {
