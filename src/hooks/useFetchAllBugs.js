@@ -28,6 +28,7 @@ export const useFetchAllBugs = () => {
     // return () => {
     //   second
     // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { bugsDataSate, setBugsDataSate, fetchingState };
 };

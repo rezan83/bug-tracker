@@ -1,14 +1,18 @@
 import React from 'react';
+import { getPeriorityName } from '../../helpers';
 function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
   const toggleSolved = () => {
     handleGlobalChange({ ...bug, solved: !bug.solved });
   };
   // in a function and spesefic class so we might use it in other places
-  const getPeriorityName = bugPriority => {
-    return ['low', 'normal', 'critical'][bugPriority - 1];
-  };
+
   const handleLocalChange = event => {
-    handleGlobalChange({ ...bug, [event.target.name]: Number(event.target.value) });
+    const eventName = event.target.name;
+    let eventValue = event.target.value;
+    if (eventName === 'priority') {
+      eventValue = Number(eventValue);
+    }
+    handleGlobalChange({ ...bug, [eventName]: eventValue });
   };
   return (
     <div
@@ -20,6 +24,15 @@ function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
       </header>
       <p>{bug.description}</p>
       <div className="submit__button">
+        <label htmlFor="assignee">Assignee:</label>
+        <input
+          type="text"
+          id="assignee"
+          name="assignee"
+          value={bug.assignee}
+          onChange={handleLocalChange}
+        />
+
         <label htmlFor="priority">Priority:</label>
         <select id="priority" name="priority" value={bug.priority} onChange={handleLocalChange}>
           <option value="1">Low</option>
