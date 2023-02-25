@@ -15,7 +15,6 @@ export const usePopulateCharts = bugsData => {
         [0, 0, 0]
       )
     );
-    console.log(priorityData, solvedData);
   }, [bugsData]);
 
   return { solvedData, priorityData };
