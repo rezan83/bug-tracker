@@ -35,8 +35,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <NavBar/>
-        <h1>Bug Tracker</h1>
+        <NavBar />
       </header>
       {/* {fetchingState.isLoading && <h1>Loading </h1>}
       {fetchingState.isError && <h1>Error </h1>}

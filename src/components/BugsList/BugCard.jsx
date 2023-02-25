@@ -1,5 +1,4 @@
 import React from 'react';
-import "./bugcard.css"
 function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
   const toggleSolved = () => {
     handleGlobalChange({ ...bug, solved: !bug.solved });
@@ -12,22 +11,27 @@ function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
     handleGlobalChange({ ...bug, [event.target.name]: Number(event.target.value) });
   };
   return (
-    <div   className={`bug ${bug.solved ? 'solved' : ''}`}>
-      <header className={`card-header bug-priority ${getPeriorityName(bug.priority)}`}>
+    <div
+      className={`bug-card bug-priority ${getPeriorityName(bug.priority)}  ${
+        bug.solved ? 'solved' : ''
+      }`}>
+      <header className={`card-header `}>
         <h2>{bug.title}</h2>
       </header>
       <p>{bug.description}</p>
       <div className="submit__button">
-      <label htmlFor="priority">Priority:</label>
-      <select id="priority" name="priority" value={bug.priority} onChange={handleLocalChange}>
-        <option value="1">Low</option>
-        <option value="2">Normal</option>
-        <option value="3">Critical</option>
-      </select>
-      <button id="btn__solved" className={`btn ${bug.solved ? 'solved' : ''}`} onClick={toggleSolved}>
-        Solved:{bug.solved ? <span>&#128504;</span> : <span>&#10005;</span>}
-      </button>
-      <button onClick={() => handleDeleteBug(bug.id)}>Delete Bug</button>
+        <label htmlFor="priority">Priority:</label>
+        <select id="priority" name="priority" value={bug.priority} onChange={handleLocalChange}>
+          <option value="1">Low</option>
+          <option value="2">Normal</option>
+          <option value="3">Critical</option>
+        </select>
+        <button className={`btn ${bug.solved ? 'solved' : ''}`} onClick={toggleSolved}>
+          {bug.solved ? <span>Solved &#128504;</span> : <span>Solve &#10005;</span>}
+        </button>
+        <button className="btn btn-delete" onClick={() => handleDeleteBug(bug.id)}>
+          &#128465;
+        </button>
       </div>
     </div>
   );

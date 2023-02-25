@@ -1,0 +1,6 @@
+.bug-form {
+    border: 1px solid gray;
+    padding: 2rem !important;
+    margin: 5rem 0 !important;
+    width: clamp(15rem, 450px, 100%);
+}

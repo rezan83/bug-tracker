@@ -1,6 +1,6 @@
 :root {
-  --color-low: hsl(134, 62%, 31%);
-  --color-normal:  hsl(211, 100%, 43%);
+  --color-low: hsl(63, 62%, 31%);
+  --color-normal: hsl(198, 100%, 43%);
   --color-critical: hsl(271, 76%, 53%);
   --color-solved: hsl(0, 0%, 60%);
 }
@@ -18,16 +18,20 @@ body {
   align-items: center;
   background: hsl(212, 62%, 96%);
   font-family: 'Roboto', sans-serif;
+  margin-top: 50px;
 }
 
+#root {
+  width: 100%;
+}
 .App {
   text-align: center;
-  width: 1400px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.App h1{
- padding-top:100px
-
+.App h1 {
+  /* padding-top:100px */
 }
 
 button {
