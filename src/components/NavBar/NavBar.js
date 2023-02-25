@@ -18,7 +18,7 @@ function NavBar() {
           {/* <Nav className="me-auto"> */}
           <Link to="/">Dashboard</Link>
             <Link to="/report">Report</Link>
-            <Link to="/about">About</Link>
+            {/* <Link to="/about">About</Link> */}
           {/* </Nav> */}
         </Container>
       </Navbar>

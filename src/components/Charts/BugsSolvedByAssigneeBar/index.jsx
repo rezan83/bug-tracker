@@ -6,51 +6,56 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import faker from 'faker';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
+export default function BugsSolvedByAssigneeBar({ solvedBy }) {
+  console.log(Object.keys(solvedBy));
+  const options = {
+    indexAxis: 'y',
+    elements: {
+      bar: {
+        borderWidth: 1
+      }
     },
-    title: {
-      display: true,
-      text: 'Chart.js Bar Chart',
-    },
-  },
-};
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'bottom'
+      },
+      title: {
+        display: true,
+        text: 'Solved By Assignee'
+      }
+    }
+  };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  const labels = Object.keys(solvedBy);
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
+  const data = {
+    labels,
+    datasets: [
+      // {
+      //   label: 'Dataset 1',
+      //   data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+      //   borderColor: 'rgb(255, 99, 132)',
+      //   backgroundColor: 'rgba(255, 99, 132, 0.5)'
+      // },
+      {
+        label: 'Solved Bugs',
+        data: Object.values(solvedBy),
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)'
+      }
+    ]
+  };
 
-export function BugsSolvedByAssigneeBar() {
-  return <Bar options={options} data={data} />;
+  return (
+    <div className="chart chart-hbar">
+      <Bar options={options} data={data} />
+    </div>
+  );
 }

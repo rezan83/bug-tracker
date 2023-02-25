@@ -6,6 +6,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const BugsPriorityPie = ({ priorityData }) => {
   const { low, normal, critical } = priorityData;
+  const options = {
+    plugins: {
+      legend: { position: 'bottom' }
+    }
+  };
   const data = {
     datasets: [
       {
@@ -22,7 +27,7 @@ const BugsPriorityPie = ({ priorityData }) => {
   return (
     <div className="chart-pie">
       <h2>Priority</h2>
-      <Pie data={data} />
+      <Pie data={data} options={options} />
     </div>
   );
 };
