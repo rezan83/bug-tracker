@@ -1,7 +1,12 @@
-.charts {
+.charts-container {
   margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.charts {
   padding: 1rem;
-  width: clamp(20rem, 80%, 100%);
+  width: 90vw;
   box-shadow: 5px 5px 10px hsla(0, 0%, 50%, 0.5);
   display: flex;
   flex-wrap: wrap;
