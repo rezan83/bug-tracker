@@ -15,7 +15,7 @@ function BugsList({ bugsDataSate, setBugsDataSate, handleGlobalChange }) {
   };
 
   return (
-    <div className="card w-100">
+    <div  className="card">
       <h1>Bugs</h1>
 
       {bugsDataSate.map(bug => {

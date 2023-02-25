@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function NavBar() {
   return (
     <>
-      <Navbar  bg="primary rounded-bottom  " variant="dark">
+      <Navbar className='z-1 position-fixed  w-100'  bg="primary rounded-bottom  " variant="dark">
         <Container>
           <Navbar.Brand href="#home">Bug Tracker</Navbar.Brand>
           <Nav className="me-auto">

@@ -22,8 +22,12 @@ body {
 
 .App {
   text-align: center;
-
   width: 1400px;
+
+}
+.App h1{
+ padding-top:100px
+
 }
 
 button {

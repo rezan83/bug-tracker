@@ -12,7 +12,7 @@ function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
     handleGlobalChange({ ...bug, [event.target.name]: Number(event.target.value) });
   };
   return (
-    <div  className={`bug ${bug.solved ? 'solved' : ''}`}>
+    <div   className={`bug ${bug.solved ? 'solved' : ''}`}>
       <header className={`card-header bug-priority ${getPeriorityName(bug.priority)}`}>
         <h2>{bug.title}</h2>
       </header>
