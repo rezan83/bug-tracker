@@ -1,12 +1,11 @@
 import React from 'react';
+import { getPeriorityName } from '../../helpers';
 function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
   const toggleSolved = () => {
     handleGlobalChange({ ...bug, solved: !bug.solved });
   };
   // in a function and spesefic class so we might use it in other places
-  const getPeriorityName = bugPriority => {
-    return ['low', 'normal', 'critical'][bugPriority - 1];
-  };
+
   const handleLocalChange = event => {
     const eventName = event.target.name;
     let eventValue = event.target.value;

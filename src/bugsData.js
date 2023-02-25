@@ -21,9 +21,9 @@ export const bugsData = [
       "id": 3,
       "title": "not important bug",
       "description": "problem with styling",
-      "solved": false,
+      "solved": true,
       "priority": 1,
-      "assignee": "superman",
+      "assignee": "robocop",
       "reporter": "robocop"
     },
     {
@@ -66,7 +66,7 @@ export const bugsData = [
       "id": 8,
       "title": "not very bad bug",
       "description": "problem with extension",
-      "solved": false,
+      "solved": true,
       "priority": 2,
       "assignee": "batman",
       "reporter": "batman"

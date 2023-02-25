@@ -5,13 +5,12 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const BubSolvedPie = ({ solvedData }) => {
-  solvedData = solvedData || [12, 8];
   const data = {
     labels: ['Opened', 'Solved'],
     datasets: [
       {
         label: '# of Bugs',
-        data: solvedData,
+        data: [solvedData.notSolvedCount, solvedData.solvedCount],
         backgroundColor: ['red', 'green'],
         // borderColor: ['grey', 'grey'],
         borderWidth: 1,

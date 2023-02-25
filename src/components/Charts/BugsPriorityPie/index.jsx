@@ -5,12 +5,12 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const BugsPriorityPie = ({ priorityData }) => {
-  priorityData = priorityData || [10, 4, 6];
+  const { low, normal, critical } = priorityData;
   const data = {
     datasets: [
       {
         label: '# of Bugs',
-        data: priorityData,
+        data: [low, normal, critical],
         backgroundColor: ['yellow', 'orange', 'purple'],
         // borderColor: ['grey', 'grey', 'grey'],
         borderWidth: 1,
