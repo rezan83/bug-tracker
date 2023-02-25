@@ -12,12 +12,18 @@ const BubSolvedPie = ({ solvedData }) => {
       {
         label: '# of Bugs',
         data: solvedData,
-        backgroundColor: ['purple', 'green'],
-        borderColor: ['grey', 'grey'],
-        borderWidth: 1
+        backgroundColor: ['red', 'green'],
+        // borderColor: ['grey', 'grey'],
+        borderWidth: 1,
+        hoverOffset: 10
       }
     ]
   };
-  return <Pie data={data} />;
+  return (
+    <div className="chart-pie">
+      <h2>Solved</h2>
+      <Pie data={data} />
+    </div>
+  );
 };
 export default BubSolvedPie;

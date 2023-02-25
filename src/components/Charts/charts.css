@@ -1,0 +1,13 @@
+.charts {
+  margin-top: 3rem;
+  padding: 1rem;
+  width: clamp(20rem, 80%, 100%);
+  box-shadow: 5px 5px 10px hsla(0, 0%, 50%, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-pie {
+  width: clamp(20rem, 400px, 100%);
+}
