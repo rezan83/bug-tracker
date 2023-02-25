@@ -3,19 +3,20 @@ import { Routes, Route } from 'react-router-dom';
 import BugsList from './components/BugsList/BugsList';
 import BugForm from './components/BugForm';
 
-import BugsPeriorityPie from './components/BugsPriorityPie';
-import BugsSolvedPie from './components/BugsSolvedPie';
+import BugsPeriorityPie from './components/Charts/BugsPriorityPie';
+import BugsSolvedPie from './components/Charts/BugsSolvedPie';
 import Charts from './components/Charts';
 import { bugsData } from './bugsData';
 import NavBar from './components/NavBar/NavBar';
 import { usePopulateCharts } from './hooks/usePopulateCharts';
-import { useFetchAllBugs } from './hooks/useFetchAllBugs';
+// import { useFetchAllBugs } from './hooks/useFetchAllBugs';
 //the Issues is going to load when we click on a btn , I made it here just to see the style
 function App() {
  ;
   const [bugsDataSate, setBugsDataSate] = useState([]);
   useEffect(() => {
     setBugsDataSate(bugsData);
+    
   }, []);
   // const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
   const { priorityData, solvedData } = usePopulateCharts(bugsDataSate);
@@ -27,6 +28,7 @@ function App() {
   };
   return (
     <div className="App">
+      {console.log(bugsDataSate)}
       <header className="App-header">
         <NavBar />
       </header>

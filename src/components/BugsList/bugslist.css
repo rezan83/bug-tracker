@@ -35,6 +35,7 @@
 }
 .bug-card {
   position: relative;
+  text-align: left;
 }
 .card-container .btn.btn-delete {
   position: absolute;
@@ -54,6 +55,9 @@ label {
   font-weight: bold;
 }
 
+input {
+  padding: .5rem;
+}
 select {
   padding: 5px;
   border-radius: 5px;
