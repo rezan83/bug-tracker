@@ -61,7 +61,6 @@ const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
       <Form.Group as={Row}>
         <Form.Label>Priority</Form.Label>
         <Form.Select
-          defasltValue="Choose..."
           name="priority"
           id="priority"
           value={newBug.priority}

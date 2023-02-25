@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route, Outlet, Link } from 'react-router-dom';
 import BugsList from './components/BugsList/BugsList';
 import BugForm from './components/BugForm';
 
@@ -25,7 +26,7 @@ function App() {
     setBugsDataSate(bugsData);
   }, []);
   // const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
-  // const {priorityData, solvedData} = usePopulateCharts(bugsDataSate)
+  const { priorityData, solvedData } = usePopulateCharts(bugsDataSate);
   const handleGlobalChange = editedBug => {
     let oldBugIndex = bugsDataSate.findIndex(bug => bug.id === editedBug.id);
     let newBusData = [...bugsDataSate];
@@ -37,6 +38,30 @@ function App() {
       <header className="App-header">
         <NavBar />
       </header>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="charts">
+              <BugsPeriorityPie priorityData={priorityData} />
+              <BugsSolvedPie solvedData={solvedData} />
+            </div>
+          }
+        />
+        <Route
+          path="/report"
+          element={
+            <>
+              <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
+              <BugsList
+                bugsDataSate={bugsDataSate}
+                setBugsDataSate={setBugsDataSate}
+                handleGlobalChange={handleGlobalChange}
+              />
+            </>
+          }
+        />
+      </Routes>
       {/* {fetchingState.isLoading && <h1>Loading </h1>}
       {fetchingState.isError && <h1>Error </h1>}
       {fetchingState.isReady && (
@@ -50,13 +75,6 @@ function App() {
         <BugsPeriorityPie priorityData={priorityData} />
         <BugsSolvedPie solvedData={solvedData} />
       </div> */}
-
-      <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
-      <BugsList
-        bugsDataSate={bugsDataSate}
-        setBugsDataSate={setBugsDataSate}
-        handleGlobalChange={handleGlobalChange}
-      />
     </div>
   );
 }
