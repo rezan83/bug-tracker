@@ -4,14 +4,17 @@ function ScrollToTop() {
   const [ScrollToTop, setScrollToTop] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-        console.log(window.screen.availHeight)
+    const scrollManager = () => {
       if (window.scrollY > window.screen.availHeight) {
         setScrollToTop(true);
       } else {
         setScrollToTop(false);
       }
-    });
+    };
+    window.addEventListener('scroll', scrollManager);
+    return () => {
+      window.removeEventListener('scroll', scrollManager);
+    };
   }, []);
 
   const scrollUp = () => {
@@ -20,6 +23,7 @@ function ScrollToTop() {
       behavior: 'smooth'
     });
   };
+
   return (
     <div className="scroll__btn">
       {ScrollToTop && (
