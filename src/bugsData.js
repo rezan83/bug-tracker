@@ -2,7 +2,7 @@ export const bugsData = [
     {
       "id": 1,
       "title": "terrible bug",
-      "description": "button are not responding",
+      "description": "Pineapple button are not responding",
       "solved": false,
       "priority": 3,
       "assignee": "batman",
@@ -28,7 +28,7 @@ export const bugsData = [
     },
     {
       "id": 4,
-      "title": "terrible bug",
+      "title": "terrible Pineapple bug",
       "description": "button are not responding",
       "solved": true,
       "priority": 3,

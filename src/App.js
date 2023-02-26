@@ -18,35 +18,49 @@ import { bugsData } from './bugsData';
 // import { useFetchAllBugs } from './hooks/useFetchAllBugs';
 import ScrollToTop from './components/ScrollToTop';
 function App() {
-  const [searchTitelQuery, setSearchTitelQuery] = useState('');
+  const [searchGlobalQuery, setSearchGlobalQuery] = useState('');
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   const [bugsDataSate, setBugsDataSate] = useState([]);
   const [bugsDataSearch, setBugsDataSearch] = useState([]);
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   useEffect(() => {
-    if (searchTitelQuery) {
+    if (searchGlobalQuery) {
       setBugsDataSearch(
-        bugsDataSate.filter(bug => bug.title.toLowerCase().includes(searchTitelQuery.toLowerCase()))
+        bugsDataSate.filter(
+          bug =>
+            bug.title.toLowerCase().includes(searchGlobalQuery.toLowerCase()) ||
+            bug.description.toLowerCase().includes(searchGlobalQuery.toLowerCase())
+        )
       );
     } else {
       setBugsDataSate(bugsData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTitelQuery]);
+  }, [searchGlobalQuery]);
 
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   // const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
   const { priorityData, solvedData, solvedBy } = usePopulateCharts(bugsDataSate);
   const handleGlobalChange = editedBug => {
-    let oldBugIndex = bugsDataSate.findIndex(bug => bug.id === editedBug.id);
-    let newBusData = [...bugsDataSate];
-    newBusData.splice(oldBugIndex, 1, editedBug);
-    setBugsDataSate(newBusData);
+    setBugsDataSate(
+      bugsDataSate.map(bug => (bug.id === editedBug.id ? { ...bug, ...editedBug } : bug))
+    );
+    if (searchGlobalQuery) {
+      setBugsDataSearch(
+        bugsDataSearch.map(bug => (bug.id === editedBug.id ? { ...bug, ...editedBug } : bug))
+      );
+    }
+  };
+  const handleDeleteBug = id => {
+    setBugsDataSate(bugsDataSate.filter(bug => bug.id !== id));
+    if (searchGlobalQuery) {
+      setBugsDataSearch(bugsDataSearch.filter(bug => bug.id !== id));
+    }
   };
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar setSearchTitelQuery={setSearchTitelQuery} bugsDataSearch={bugsDataSearch} />
+        <NavBar setSearchGlobalQuery={setSearchGlobalQuery} bugsDataSearch={bugsDataSearch} />
       </header>
       <Routes>
         {/* // uncomment useFetchAllBugs related and comment bugsData to test remot api */}
@@ -81,10 +95,11 @@ function App() {
             <>
               <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
               <BugsList
-                bugsDataSate={searchTitelQuery ? bugsDataSearch : bugsDataSate}
+                bugsDataSate={bugsDataSate}
                 // bugsDataSearch={bugsDataSearch}
                 setBugsDataSate={setBugsDataSate}
                 handleGlobalChange={handleGlobalChange}
+                handleDeleteBug={handleDeleteBug}
               />
             </>
           }
@@ -93,11 +108,12 @@ function App() {
           path="/search"
           element={
             <>
-              <h2 className='search-page-header'>Search Results:</h2>
+              <h2 className="search-page-header">Search Results:</h2>
               <BugsList
-                bugsDataSate={searchTitelQuery ? bugsDataSearch : bugsDataSate}
+                bugsDataSate={searchGlobalQuery ? bugsDataSearch : bugsDataSate}
                 setBugsDataSate={setBugsDataSate}
                 handleGlobalChange={handleGlobalChange}
+                handleDeleteBug={handleDeleteBug}
               />
             </>
           }

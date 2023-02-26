@@ -6,14 +6,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
 import './navbar.css';
 
-function NavBar({ setSearchTitelQuery }) {
+function NavBar({ setSearchGlobalQuery }) {
   const navigate = useNavigate();
-  const [searchTitleText, setSearchTitleText] = useState('');
+  const [searchText, setSearchText] = useState('');
 
-  const searchTitle = event => {
+  const searchQuery = event => {
     event.preventDefault();
-    setSearchTitelQuery(searchTitleText);
-    setSearchTitleText('');
+    setSearchGlobalQuery(searchText);
+    setSearchText('');
     navigate('search');
   };
   return (
@@ -36,15 +36,15 @@ function NavBar({ setSearchTitelQuery }) {
           </Navbar.Collapse>
           
           <div className="nav-search">
-            <form onSubmit={searchTitle}>
-              <button className="btn search-title-btn" onClick={searchTitle}>
+            <form onSubmit={searchQuery}>
+              <button className="btn search-title-btn" onClick={searchQuery}>
                 &#128269;
               </button>
               <input
                 type="search"
                 name="search-title"
-                value={searchTitleText}
-                onChange={event => setSearchTitleText(event.target.value)}
+                value={searchText}
+                onChange={event => setSearchText(event.target.value)}
               />
             </form>
           </div>
