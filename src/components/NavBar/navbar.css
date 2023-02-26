@@ -12,6 +12,8 @@
 }
 .nav-search {
   position: relative;
+  /* margin-bottom: 2rem; */
+  width: 10rem;
 }
 .nav-search form {
   margin: 0;
