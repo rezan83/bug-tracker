@@ -16,6 +16,7 @@ import { usePopulateCharts } from './hooks/usePopulateCharts';
 import { bugsData } from './bugsData';
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
 // import { useFetchAllBugs } from './hooks/useFetchAllBugs';
+import ScrollToTop from './components/ScrollToTop';
 function App() {
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   const [bugsDataSate, setBugsDataSate] = useState([]);
@@ -81,6 +82,7 @@ function App() {
           }
         />
       </Routes>
+      <ScrollToTop />
     </div>
   );
 }
