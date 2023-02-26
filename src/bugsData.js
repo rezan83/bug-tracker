@@ -10,7 +10,7 @@ export const bugsData = [
     },
     {
       "id": 2,
-      "title": "not very bad bug",
+      "title": "Banana bug",
       "description": "problem with extension",
       "solved": false,
       "priority": 2,
@@ -19,7 +19,7 @@ export const bugsData = [
     },
     {
       "id": 3,
-      "title": "not important bug",
+      "title": "Apple important bug",
       "description": "problem with styling",
       "solved": true,
       "priority": 1,
@@ -37,7 +37,7 @@ export const bugsData = [
     },
     {
       "id": 5,
-      "title": "not very bad bug",
+      "title": "not very bad Orange bug",
       "description": "problem with extension",
       "solved": false,
       "priority": 2,
@@ -55,7 +55,7 @@ export const bugsData = [
     },
     {
       "id": 7,
-      "title": "terrible bug",
+      "title": "terrible Tomato bug",
       "description": "button are not responding",
       "solved": true,
       "priority": 3,
@@ -100,7 +100,7 @@ export const bugsData = [
     },
     {
       "id": 12,
-      "title": "not important bug",
+      "title": "not Tomato bug",
       "description": "problem with styling",
       "solved": false,
       "priority": 1,
@@ -118,7 +118,7 @@ export const bugsData = [
     },
     {
       "id": 14,
-      "title": "not very bad bug",
+      "title": "not Tomato bad bug",
       "description": "problem with extension",
       "solved": false,
       "priority": 2,
@@ -136,7 +136,7 @@ export const bugsData = [
     },
     {
       "id": 16,
-      "title": "terrible bug",
+      "title": "Banana bug",
       "description": "button are not responding",
       "solved": false,
       "priority": 3,
@@ -163,7 +163,7 @@ export const bugsData = [
     },
     {
       "id": 19,
-      "title": "not very bad bug",
+      "title": "not Apple bad bug",
       "description": "problem with extension",
       "solved": true,
       "priority": 2,
@@ -172,7 +172,7 @@ export const bugsData = [
     },
     {
       "id": 20,
-      "title": "not important bug",
+      "title": "not Orange bug",
       "description": "problem with styling",
       "solved": false,
       "priority": 1,

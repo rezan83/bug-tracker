@@ -1,13 +1,23 @@
-.main-nav{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    width: 100%;
-    
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
 }
 
 .main-nav a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
+}
+.nav-search {
+  position: relative;
+}
+.nav-search form {
+  margin: 0;
+  padding: 0;
+}
+.search-title-btn {
+  position: absolute;
+  right: 0;
 }

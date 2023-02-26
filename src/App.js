@@ -18,12 +18,21 @@ import { bugsData } from './bugsData';
 // import { useFetchAllBugs } from './hooks/useFetchAllBugs';
 import ScrollToTop from './components/ScrollToTop';
 function App() {
+  const [searchTitelQuery, setSearchTitelQuery] = useState('');
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   const [bugsDataSate, setBugsDataSate] = useState([]);
+  const [bugsDataSearch, setBugsDataSearch] = useState([]);
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   useEffect(() => {
-    setBugsDataSate(bugsData);
-  }, []);
+    if (searchTitelQuery) {
+      setBugsDataSearch(
+        bugsDataSate.filter(bug => bug.title.toLowerCase().includes(searchTitelQuery.toLowerCase()))
+      );
+    } else {
+      setBugsDataSate(bugsData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTitelQuery]);
 
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   // const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
@@ -37,7 +46,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar />
+        <NavBar setSearchTitelQuery={setSearchTitelQuery} bugsDataSearch={bugsDataSearch} />
       </header>
       <Routes>
         {/* // uncomment useFetchAllBugs related and comment bugsData to test remot api */}
@@ -72,7 +81,21 @@ function App() {
             <>
               <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
               <BugsList
-                bugsDataSate={bugsDataSate}
+                bugsDataSate={searchTitelQuery ? bugsDataSearch : bugsDataSate}
+                // bugsDataSearch={bugsDataSearch}
+                setBugsDataSate={setBugsDataSate}
+                handleGlobalChange={handleGlobalChange}
+              />
+            </>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <>
+              <h2 className='search-page-header'>Search Results:</h2>
+              <BugsList
+                bugsDataSate={searchTitelQuery ? bugsDataSearch : bugsDataSate}
                 setBugsDataSate={setBugsDataSate}
                 handleGlobalChange={handleGlobalChange}
               />
@@ -80,6 +103,7 @@ function App() {
           }
         />
       </Routes>
+
       <ScrollToTop />
     </div>
   );
