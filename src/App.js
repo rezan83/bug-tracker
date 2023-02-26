@@ -57,11 +57,11 @@ function App() {
                 </div>
               )} */}
               {/* {fetchingState.isReady && ( */}
-                <Charts>
-                  <BugsPeriorityPie priorityData={priorityData} />
-                  <BugsSolvedPie solvedData={solvedData} />
-                  <BugsSolvedByAssigneeBar solvedBy={solvedBy} />
-                </Charts>
+              <Charts>
+                <BugsPeriorityPie priorityData={priorityData} />
+                <BugsSolvedPie solvedData={solvedData} />
+                <BugsSolvedByAssigneeBar solvedBy={solvedBy} />
+              </Charts>
               {/* )} */}
             </>
           }
@@ -70,14 +70,12 @@ function App() {
           path="/report"
           element={
             <>
-              <>
-                <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
-                <BugsList
-                  bugsDataSate={bugsDataSate}
-                  setBugsDataSate={setBugsDataSate}
-                  handleGlobalChange={handleGlobalChange}
-                />
-              </>
+              <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
+              <BugsList
+                bugsDataSate={bugsDataSate}
+                setBugsDataSate={setBugsDataSate}
+                handleGlobalChange={handleGlobalChange}
+              />
             </>
           }
         />
