@@ -82,6 +82,7 @@ const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
           name="assignee"
           id="assignee"
           value={newBug.assignee}
+          placeholder="same as reporter if left empty"
           onChange={handleChange}
         />
       </Form.Group>

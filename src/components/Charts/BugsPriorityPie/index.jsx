@@ -14,7 +14,7 @@ const BugsPriorityPie = ({ priorityData }) => {
   const data = {
     datasets: [
       {
-        label: '# of Bugs',
+        label: ' of Bugs',
         data: [low, normal, critical],
         backgroundColor: ['yellow', 'orange', 'purple'],
         // borderColor: ['grey', 'grey', 'grey'],

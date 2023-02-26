@@ -149,7 +149,7 @@ export const bugsData = [
       "description": "problem with extension",
       "solved": false,
       "priority": 2,
-      "assignee": "batman",
+      "assignee": "robocop",
       "reporter": "batman"
     },
     {
@@ -167,7 +167,7 @@ export const bugsData = [
       "description": "problem with extension",
       "solved": true,
       "priority": 2,
-      "assignee": "batman",
+      "assignee": "robocop",
       "reporter": "batman"
     },
     {

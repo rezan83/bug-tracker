@@ -14,7 +14,7 @@ const BubSolvedPie = ({ solvedData }) => {
     labels: ['Opened', 'Solved'],
     datasets: [
       {
-        label: '# of Bugs',
+        label: ' of Bugs',
         data: [solvedData.notSolvedCount, solvedData.solvedCount],
         backgroundColor: ['red', 'green'],
         // borderColor: ['grey', 'grey'],

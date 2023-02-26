@@ -13,7 +13,6 @@ import { Bar } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function BugsSolvedByAssigneeBar({ solvedBy }) {
-  console.log(Object.keys(solvedBy));
   const options = {
     indexAxis: 'y',
     elements: {
@@ -34,19 +33,18 @@ export default function BugsSolvedByAssigneeBar({ solvedBy }) {
   };
 
   const labels = Object.keys(solvedBy);
-
   const data = {
     labels,
     datasets: [
-      // {
-      //   label: 'Dataset 1',
-      //   data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      //   borderColor: 'rgb(255, 99, 132)',
-      //   backgroundColor: 'rgba(255, 99, 132, 0.5)'
-      // },
+      {
+        label: 'Pending Bugs',
+        data: Object.values(solvedBy).map(user=>user.no),
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+      },
       {
         label: 'Solved Bugs',
-        data: Object.values(solvedBy),
+        data: Object.values(solvedBy).map(user=>user.yes),
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)'
       }

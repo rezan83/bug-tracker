@@ -1,20 +1,22 @@
+// uncomment useFetchAllBugs related and comment bugsData to test remot api
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import BugsList from './components/BugsList/BugsList';
 import BugForm from './components/BugForm';
+// import errorImage from './images/error.svg';
+// import loadingImage from './images/loading.svg';
 
 import BugsPeriorityPie from './components/Charts/BugsPriorityPie';
 import BugsSolvedPie from './components/Charts/BugsSolvedPie';
 import BugsSolvedByAssigneeBar from './components/Charts/BugsSolvedByAssigneeBar';
 import Charts from './components/Charts';
-// uncomment useFetchAllBugs related and comment bugsData to test remot api
-import { bugsData } from './bugsData';
 import NavBar from './components/NavBar/NavBar';
 import { usePopulateCharts } from './hooks/usePopulateCharts';
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
+import { bugsData } from './bugsData';
+// uncomment useFetchAllBugs related and comment bugsData to test remot api
 // import { useFetchAllBugs } from './hooks/useFetchAllBugs';
 function App() {
-
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   const [bugsDataSate, setBugsDataSate] = useState([]);
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
@@ -33,7 +35,6 @@ function App() {
   };
   return (
     <div className="App">
-      {console.log(bugsDataSate)}
       <header className="App-header">
         <NavBar />
       </header>
@@ -43,14 +44,23 @@ function App() {
           path="/"
           element={
             <>
-              {/* {fetchingState.isLoading && <h1>Loading </h1>}
-              {fetchingState.isError && <h1>Error </h1>}
-              {fetchingState.isReady && ( */}
-              <Charts>
-                <BugsPeriorityPie priorityData={priorityData} />
-                <BugsSolvedPie solvedData={solvedData} />
-                <BugsSolvedByAssigneeBar solvedBy={solvedBy} />
-              </Charts>
+              {/* {
+              fetchingState.isLoading && (
+                <div className="loading">
+                  <img src={loadingImage} alt="loading" />
+                </div>
+              )} */}
+              {/* {fetchingState.isError && (
+                <div className="loading fetch-error">
+                  <h1>Sorry, please tray again later </h1> <img src={errorImage} alt="fetch data error" />
+                </div>
+              )} */}
+              {/* {fetchingState.isReady && ( */}
+                <Charts>
+                  <BugsPeriorityPie priorityData={priorityData} />
+                  <BugsSolvedPie solvedData={solvedData} />
+                  <BugsSolvedByAssigneeBar solvedBy={solvedBy} />
+                </Charts>
               {/* )} */}
             </>
           }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPeriorityName } from '../../helpers';
+import { getPriorityName } from '../../helpers';
 function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
   const toggleSolved = () => {
     handleGlobalChange({ ...bug, solved: !bug.solved });
@@ -16,7 +16,7 @@ function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
   };
   return (
     <div
-      className={`bug-card bug-priority ${getPeriorityName(bug.priority)}  ${
+      className={`bug-card bug-priority ${getPriorityName(bug.priority)}  ${
         bug.solved ? 'solved' : ''
       }`}>
       <header className={`card-header `}>

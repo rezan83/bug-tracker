@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getPeriorityName } from '../helpers';
+import { getPriorityName } from '../helpers';
 
 export const usePopulateCharts = bugsData => {
   const initialChartsData = {
@@ -10,15 +10,17 @@ export const usePopulateCharts = bugsData => {
   const [chartsData, setChartsData] = useState(initialChartsData);
   useEffect(() => {
     let calcData = bugsData.reduce((accu, bug) => {
-      if (bug.solved) {
-        accu.solvedData.solvedCount += 1;
-        if (Object(accu.solvedBy).hasOwnProperty(bug.assignee)) {
-          accu.solvedBy[bug.assignee] += 1;
-        } else {
-          accu.solvedBy[bug.assignee] = 1;
-        }
+      if (!Object(accu.solvedBy).hasOwnProperty(bug.assignee)) {
+        accu.solvedBy[bug.assignee] = { yes: 0, no: 0 };
       }
-      accu.priorityData[getPeriorityName(bug.priority)] += 1;
+      if (!bug.solved) {
+        accu.solvedBy[bug.assignee].no += 1;
+      } else {
+        accu.solvedBy[bug.assignee].yes += 1;
+        accu.solvedData.solvedCount += 1;
+      }
+
+      accu.priorityData[getPriorityName(bug.priority)] += 1;
       return accu;
     }, initialChartsData);
     calcData.solvedData.notSolvedCount = bugsData.length - calcData.solvedData.solvedCount;
