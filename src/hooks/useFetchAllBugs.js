@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
 export const useFetchAllBugs = () => {
+  const [bugsFilter, setBugsFilter] = useState({ sortPriority: 1, showSolved: true, set: false });
+  const [bugsFilterDataState, setBugsFilterDataState] = useState([]);
   const [bugsDataState, setBugsDataState] = useState([]);
   const [fetchingState, setFetchingState] = useState({
     isLoading: true,
@@ -36,5 +38,26 @@ export const useFetchAllBugs = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return { bugsDataState, setBugsDataState, fetchingState };
+  useEffect(() => {
+    setBugsFilterDataState(() => {
+      if (bugsFilter.set) {
+        return [...bugsDataState]
+          .sort((bug1, bug2) => bugsFilter.sortPriority * (bug1.priority - bug2.priority))
+          .filter(bug => (bugsFilter.showSolved ? bug : !bug.solved));
+      }
+
+      return bugsDataState;
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bugsFilter]);
+  return {
+    bugsDataState,
+    setBugsDataState,
+    fetchingState,
+    bugsFilter,
+    setBugsFilter,
+    bugsFilterDataState,
+    setBugsFilterDataState
+  };
 };

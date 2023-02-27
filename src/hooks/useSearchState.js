@@ -9,7 +9,8 @@ export const useSearchState = bugsDataState => {
         bugsDataState.filter(
           bug =>
             bug.title.toLowerCase().includes(searchGlobalQuery.toLowerCase()) ||
-            bug.description.toLowerCase().includes(searchGlobalQuery.toLowerCase())
+            bug.description.toLowerCase().includes(searchGlobalQuery.toLowerCase()) ||
+            bug.assignee.toLowerCase().includes(searchGlobalQuery.toLowerCase())
         )
       );
     }

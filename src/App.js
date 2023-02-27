@@ -18,7 +18,15 @@ import { useFetchAllBugs } from './hooks/useFetchAllBugs';
 
 function App() {
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
-  const { fetchingState, setBugsDataState, bugsDataState } = useFetchAllBugs();
+  const {
+    fetchingState,
+    setBugsDataState,
+    bugsDataState,
+    bugsFilter,
+    setBugsFilter,
+    bugsFilterDataState,
+    setBugsFilterDataState
+  } = useFetchAllBugs();
   const { priorityData, solvedData, solvedBy } = usePopulateCharts(bugsDataState);
   const { searchGlobalQuery, setSearchGlobalQuery, bugsDataSearch, setBugsDataSearch } =
     useSearchState(bugsDataState);
@@ -32,11 +40,19 @@ function App() {
         bugsDataSearch.map(bug => (bug.id === editedBug.id ? { ...bug, ...editedBug } : bug))
       );
     }
+    if (bugsFilter.set) {
+      setBugsFilterDataState(
+        bugsFilterDataState.map(bug => (bug.id === editedBug.id ? { ...bug, ...editedBug } : bug))
+      );
+    }
   };
   const handleDeleteBug = id => {
     setBugsDataState(bugsDataState.filter(bug => bug.id !== id));
     if (searchGlobalQuery) {
       setBugsDataSearch(bugsDataSearch.filter(bug => bug.id !== id));
+    }
+    if (bugsFilter.set) {
+      setBugsFilterDataState(bugsFilterDataState.filter(bug => bug.id !== id));
     }
   };
   return (
@@ -59,7 +75,17 @@ function App() {
         <Route
           path="/report"
           element={
-            <Report {...{ bugsDataState, setBugsDataState, handleGlobalChange, handleDeleteBug }} />
+            <Report
+              {...{
+                bugsDataState,
+                setBugsDataState,
+                handleGlobalChange,
+                handleDeleteBug,
+                bugsFilter,
+                setBugsFilter,
+                bugsFilterDataState
+              }}
+            />
           }
         />
         <Route
