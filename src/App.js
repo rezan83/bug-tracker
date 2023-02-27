@@ -27,7 +27,7 @@ function App() {
     bugsFilterDataState,
     setBugsFilterDataState
   } = useFetchAllBugs();
-  const { priorityData, solvedData, solvedBy } = usePopulateCharts(bugsDataState);
+  const { priorityData, solvedCount, solvedBy } = usePopulateCharts(bugsDataState);
   const { searchGlobalQuery, setSearchGlobalQuery, bugsDataSearch, setBugsDataSearch } =
     useSearchState(bugsDataState);
 
@@ -55,7 +55,7 @@ function App() {
       setBugsFilterDataState(bugsFilterDataState.filter(bug => bug.id !== id));
     }
   };
-  
+
   return (
     <div className="App">
       <header className="App-header">
@@ -69,7 +69,7 @@ function App() {
             <>
               {fetchingState.isLoading && <Loading />}
               {fetchingState.isError && <FetchError />}
-              {fetchingState.isReady && <Dashboard {...{ priorityData, solvedData, solvedBy }} />}
+              {fetchingState.isReady && <Dashboard {...{ priorityData, solvedCount, solvedBy }} />}
             </>
           }
         />

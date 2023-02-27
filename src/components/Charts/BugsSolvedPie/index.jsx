@@ -4,7 +4,7 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const BubSolvedPie = ({ solvedData }) => {
+const BubSolvedPie = ({ solvedCount }) => {
   const options = {
     plugins: {
       legend: { position: 'bottom' }
@@ -15,7 +15,7 @@ const BubSolvedPie = ({ solvedData }) => {
     datasets: [
       {
         label: ' of Bugs',
-        data: [solvedData.notSolvedCount, solvedData.solvedCount],
+        data: [solvedCount.notSolvedCount, solvedCount.isSolvedCount],
         backgroundColor: ['red', 'green'],
         // borderColor: ['grey', 'grey'],
         borderWidth: 1,
@@ -26,7 +26,7 @@ const BubSolvedPie = ({ solvedData }) => {
   return (
     <div className="chart-pie">
       <h2>Solved</h2>
-      <Pie data={data} options={options}/>
+      <Pie data={data} options={options} />
     </div>
   );
 };

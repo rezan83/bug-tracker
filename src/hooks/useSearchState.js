@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 export const useSearchState = bugsDataState => {
+  // the search text
   const [searchGlobalQuery, setSearchGlobalQuery] = useState('');
+  // the filtered data based on search``
   const [bugsDataSearch, setBugsDataSearch] = useState([]);
 
   useEffect(() => {
+    // if the search query isn't empty
     if (searchGlobalQuery) {
+      // search title, description and assignee
       setBugsDataSearch(
         bugsDataState.filter(
           bug =>

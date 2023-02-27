@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export const useFetchAllBugs = () => {
+  // if set is false, componant will show normal data
   const [bugsFilter, setBugsFilter] = useState({ sortPriority: 1, showSolved: true, set: false });
+  // filtred data
   const [bugsFilterDataState, setBugsFilterDataState] = useState([]);
+  // normal fetched data``
   const [bugsDataState, setBugsDataState] = useState([]);
   const [fetchingState, setFetchingState] = useState({
     isLoading: true,
@@ -19,6 +22,7 @@ export const useFetchAllBugs = () => {
   // working server
   const URL = 'https://flask-example-psi.vercel.app/';
 
+  // responsible of fetching data
   useEffect(() => {
     fetch(URL)
       .then(res => {
@@ -38,6 +42,8 @@ export const useFetchAllBugs = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // responsible of sort/filtering data
   useEffect(() => {
     setBugsFilterDataState(() => {
       if (bugsFilter.set) {
@@ -51,10 +57,11 @@ export const useFetchAllBugs = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bugsFilter]);
+
   return {
+    fetchingState,
     bugsDataState,
     setBugsDataState,
-    fetchingState,
     bugsFilter,
     setBugsFilter,
     bugsFilterDataState,

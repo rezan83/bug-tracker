@@ -4,11 +4,11 @@ import BugsPriorityPie from '../components/Charts/BugsPriorityPie';
 import BugsSolvedPie from '../components/Charts/BugsSolvedPie';
 import BugsSolvedByAssigneeBar from '../components/Charts/BugsSolvedByAssigneeBar';
 
-const Dashboard = ({ priorityData, solvedData, solvedBy }) => {
+const Dashboard = ({ priorityData, solvedCount, solvedBy }) => {
   return (
     <Charts>
       <BugsPriorityPie priorityData={priorityData} />
-      <BugsSolvedPie solvedData={solvedData} />
+      <BugsSolvedPie solvedCount={solvedCount} />
       <BugsSolvedByAssigneeBar solvedBy={solvedBy} />
     </Charts>
   );
