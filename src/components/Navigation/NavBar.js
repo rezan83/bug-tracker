@@ -41,6 +41,7 @@ function NavBar({ setSearchGlobalQuery }) {
                 type="search"
                 name="search-title"
                 value={searchText}
+                placeholder="Title, Description or Assignee"
                 onChange={event => setSearchText(event.target.value)}
               />
             </form>

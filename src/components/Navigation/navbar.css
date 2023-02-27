@@ -25,6 +25,21 @@
   margin: 0;
   padding: 0;
 }
+.nav-search input {
+  /* font-size: .7rem; */
+  /* transition: .5s;
+  margin-left: 2rem; */
+  /* width: 10rem; */
+}
+.nav-search input::placeholder {
+  /* font-size: .7rem; */
+  /* width: 10rem; */
+}
+.nav-search input:focus {
+  /* font-size: .8rem; */
+  /* transform: scale(1.2);
+  transform-origin: right; */
+}
 .search-title-btn {
   position: absolute;
   right: 0;
