@@ -5,7 +5,7 @@ export const useFetchAllBugs = () => {
   const [bugsFilter, setBugsFilter] = useState({ sortPriority: 1, showSolved: true, set: false });
   // filtred data
   const [bugsFilterDataState, setBugsFilterDataState] = useState([]);
-  // normal fetched data``
+  // normal fetched data
   const [bugsDataState, setBugsDataState] = useState([]);
   const [fetchingState, setFetchingState] = useState({
     isLoading: true,
@@ -47,9 +47,12 @@ export const useFetchAllBugs = () => {
   useEffect(() => {
     setBugsFilterDataState(() => {
       if (bugsFilter.set) {
+        // sort des or asc based on claback returning - or +
+        // it changes based on sortPriority +1 or -1
         return [...bugsDataState]
           .sort((bug1, bug2) => bugsFilter.sortPriority * (bug1.priority - bug2.priority))
-          .filter(bug => (bugsFilter.showSolved ? bug : !bug.solved));
+          // show all or show only not solved
+          .filter(bug => (bugsFilter.showSolved ? true : !bug.solved));
       }
 
       return bugsDataState;
