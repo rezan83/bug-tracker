@@ -26,4 +26,4 @@ The Bug Tracker is a tool to track the Issues and modify them.
 ## Demo
 
  - [Link to the demo website](https://symphonious-torrone-6c9ce2.netlify.app/)
- - [A brief video of how it works](https://www.loom.com/share/dc80717c6c724e8c96129166d1f1b3b8)
+ - [A brief video of how it works](https://www.loom.com/share/4d36a4511a31404dbf3b51df723e0adb)
