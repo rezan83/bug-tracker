@@ -1,5 +1,5 @@
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import BugsList from './components/BugsList/BugsList';
 import BugForm from './components/BugForm';
@@ -12,37 +12,19 @@ import Charts from './components/Charts';
 import NavBar from './components/Navigation/NavBar';
 import ScrollToTop from './components/Navigation/ScrollToTop';
 
-import { usePopulateCharts } from './hooks/usePopulateCharts';
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
 // import { bugsData } from './bugsData';
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
 import { useFetchAllBugs } from './hooks/useFetchAllBugs';
+import { useSearchState } from './hooks/useSearchState';
+import { usePopulateCharts } from './hooks/usePopulateCharts';
 function App() {
-  const [searchGlobalQuery, setSearchGlobalQuery] = useState('');
-  // uncomment useFetchAllBugs related and comment bugsData to test remot api
-  // const [bugsDataState, setBugsDataState] = useState([]);
-  const [bugsDataSearch, setBugsDataSearch] = useState([]);
-  // uncomment useFetchAllBugs related and comment bugsData to test remot api
-  useEffect(() => {
-    if (searchGlobalQuery) {
-      setBugsDataSearch(
-        bugsDataState.filter(
-          bug =>
-            bug.title.toLowerCase().includes(searchGlobalQuery.toLowerCase()) ||
-            bug.description.toLowerCase().includes(searchGlobalQuery.toLowerCase())
-        )
-      );
-    }
-    // else {
-    //   setBugsDataState(bugsData);
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchGlobalQuery]);
-
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   const { fetchingState, setBugsDataState, bugsDataState } = useFetchAllBugs();
   const { priorityData, solvedData, solvedBy } = usePopulateCharts(bugsDataState);
-  
+  const { searchGlobalQuery, setSearchGlobalQuery, bugsDataSearch, setBugsDataSearch } =
+    useSearchState(bugsDataState);
+
   const handleGlobalChange = editedBug => {
     setBugsDataState(
       bugsDataState.map(bug => (bug.id === editedBug.id ? { ...bug, ...editedBug } : bug))
@@ -98,7 +80,6 @@ function App() {
               <BugForm bugsDataState={bugsDataState} setBugsDataState={setBugsDataState} />
               <BugsList
                 bugsDataState={bugsDataState}
-                // bugsDataSearch={bugsDataSearch}
                 setBugsDataState={setBugsDataState}
                 handleGlobalChange={handleGlobalChange}
                 handleDeleteBug={handleDeleteBug}
