@@ -4,23 +4,20 @@
 The Bug Tracker is a tool to track the Issues and modify them.
 
 
-
-
 ## Features 🚀
 
 - Show the stats of all the issues in the system
 - Report the Assignee's progress 
 - Add new Bugs
+- Search Bugs by title or description
 - Delete Bugs
 - Modify : change priority / assign to mambers / change the situation { solved, not solved} 
 
-
-
 ## Tech Stack
 
-**Client:** React, Bootstrap
+**Client:** React, Chartjs, React-router, Bootstrap
 
-**Server:** NodeJs, Api
+**Server:** Flask/Python (remote vercel), Sanic/Python (local in case remote didn't work)
 
 
 ## Demo
