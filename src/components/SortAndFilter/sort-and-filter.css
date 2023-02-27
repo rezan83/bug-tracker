@@ -6,6 +6,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
 }
 .sort-and-filter button {
     width: 8rem;

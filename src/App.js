@@ -55,6 +55,7 @@ function App() {
       setBugsFilterDataState(bugsFilterDataState.filter(bug => bug.id !== id));
     }
   };
+  
   return (
     <div className="App">
       <header className="App-header">
