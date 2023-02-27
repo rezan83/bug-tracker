@@ -4,3 +4,8 @@
     margin: 5rem 0 !important;
     width: clamp(15rem, 450px, 100%);
 }
+
+.greenSuccess {
+    background-color: green;
+    box-shadow: 1px 1px 20px hsl(84, 100%, 59%);
+}

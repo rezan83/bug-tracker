@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './bugform.css';
 
 const BugForm = ({ bugsDataState, setBugsDataState }) => {
+  const [addSuccess, setAddSuccess] = useState(false);
   const [newBug, setNewBug] = useState({
     id: '0',
     title: '',
@@ -33,6 +34,9 @@ const BugForm = ({ bugsDataState, setBugsDataState }) => {
       reporter: '',
       assignee: ''
     });
+
+    setAddSuccess(true);
+    setTimeout(() => setAddSuccess(false), 1000);
   };
   const handleChange = event => {
     const { name, value } = event.target;
@@ -96,8 +100,12 @@ const BugForm = ({ bugsDataState, setBugsDataState }) => {
         </Form.Select>
       </Form.Group>
 
-      <Button className="w-100 mt-5" variant="primary" size="sm" type="submit">
-        Report
+      <Button
+        className={`w-100 mt-5 ${addSuccess ? 'greenSuccess' : ''}`}
+        variant="primary"
+        size="sm"
+        type="submit">
+        {addSuccess ? 'Reported Successfully' : 'Report'}
       </Button>
     </Form>
   );
