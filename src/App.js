@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import BugsList from './components/BugsList/BugsList';
 import BugForm from './components/BugForm';
-// import errorImage from './images/error.svg';
-// import loadingImage from './images/loading.svg';
+import errorImage from './images/error.svg';
+import loadingImage from './images/loading.svg';
 
 import BugsPeriorityPie from './components/Charts/BugsPriorityPie';
 import BugsSolvedPie from './components/Charts/BugsSolvedPie';
@@ -13,14 +13,14 @@ import Charts from './components/Charts';
 import NavBar from './components/NavBar/NavBar';
 import { usePopulateCharts } from './hooks/usePopulateCharts';
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
-import { bugsData } from './bugsData';
+// import { bugsData } from './bugsData';
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
-// import { useFetchAllBugs } from './hooks/useFetchAllBugs';
+import { useFetchAllBugs } from './hooks/useFetchAllBugs';
 import ScrollToTop from './components/ScrollToTop';
 function App() {
   const [searchGlobalQuery, setSearchGlobalQuery] = useState('');
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
-  const [bugsDataSate, setBugsDataSate] = useState([]);
+  // const [bugsDataSate, setBugsDataSate] = useState([]);
   const [bugsDataSearch, setBugsDataSearch] = useState([]);
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   useEffect(() => {
@@ -32,14 +32,15 @@ function App() {
             bug.description.toLowerCase().includes(searchGlobalQuery.toLowerCase())
         )
       );
-    } else {
-      setBugsDataSate(bugsData);
-    }
+    } 
+    // else {
+    //   setBugsDataSate(bugsData);
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchGlobalQuery]);
 
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
-  // const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
+  const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
   const { priorityData, solvedData, solvedBy } = usePopulateCharts(bugsDataSate);
   const handleGlobalChange = editedBug => {
     setBugsDataSate(
@@ -68,24 +69,24 @@ function App() {
           path="/"
           element={
             <>
-              {/* {
-              fetchingState.isLoading && (
+              {fetchingState.isLoading && (
                 <div className="loading">
                   <img src={loadingImage} alt="loading" />
                 </div>
-              )} */}
-              {/* {fetchingState.isError && (
+              )}
+              {fetchingState.isError && (
                 <div className="loading fetch-error">
-                  <h1>Sorry, please tray again later </h1> <img src={errorImage} alt="fetch data error" />
+                  <h1>Sorry, please tray again later </h1>{' '}
+                  <img src={errorImage} alt="fetch data error" />
                 </div>
-              )} */}
-              {/* {fetchingState.isReady && ( */}
-              <Charts>
-                <BugsPeriorityPie priorityData={priorityData} />
-                <BugsSolvedPie solvedData={solvedData} />
-                <BugsSolvedByAssigneeBar solvedBy={solvedBy} />
-              </Charts>
-              {/* )} */}
+              )}
+              {fetchingState.isReady && (
+                <Charts>
+                  <BugsPeriorityPie priorityData={priorityData} />
+                  <BugsSolvedPie solvedData={solvedData} />
+                  <BugsSolvedByAssigneeBar solvedBy={solvedBy} />
+                </Charts>
+              )}
             </>
           }
         />

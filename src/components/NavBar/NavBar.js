@@ -26,12 +26,12 @@ function NavBar({ setSearchGlobalQuery }) {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link>
+              {/* <Nav.Link> */}
                 <Link to="/">Dashboard</Link>
-              </Nav.Link>
-              <Nav.Link>
+              {/* </Nav.Link> */}
+              {/* <Nav.Link> */}
                 <Link to="/report">Report</Link>
-              </Nav.Link>
+              {/* </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
           

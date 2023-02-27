@@ -10,6 +10,12 @@
   color: white;
   text-decoration: none;
 }
+.me-auto {
+  width: 20vw;
+  display: flex;
+  margin: 1rem auto ;
+  gap: 5rem;
+}
 .nav-search {
   position: relative;
   /* margin-bottom: 2rem; */

@@ -6,7 +6,16 @@ export const useFetchAllBugs = () => {
     isError: false,
     isReady: false
   });
-  const URL = 'https://bugtracker.free.beeceptor.com/';
+  
+  // might not work 500 req/day
+  // const URL = 'https://bugtracker.free.beeceptor.com/';
+
+  // local server: 1- install python 2-run: pip install sanic[ext] 3- run: sanic server.app
+  // const URL = 'http://localhost:8000/'
+
+  // working server
+  const URL = 'https://flask-example-psi.vercel.app/'
+
   useEffect(() => {
     fetch(URL)
       .then(res => {
@@ -26,7 +35,7 @@ export const useFetchAllBugs = () => {
 
     
     // return () => {
-    //   second
+    //   
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
