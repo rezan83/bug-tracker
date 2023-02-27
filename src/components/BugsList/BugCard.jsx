@@ -18,7 +18,7 @@ function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
       className={`bug-card bug-priority ${getPriorityName(bug.priority)}  ${
         bug.solved ? 'solved' : ''
       }`}>
-      <header className={`card-header `}>
+      <header className="card-header">
         <h2>{bug.title}</h2>
       </header>
       <p>{bug.description}</p>

@@ -1,9 +1,8 @@
 .card-container {
   margin: 0 auto;
   padding: 4rem 1rem;
-  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.2);
   color: white;
-
+  width: 100%;
   /* desctop */
   display: flex;
   flex-wrap: wrap;
@@ -30,10 +29,11 @@
 }
 .card-container .btn.solved {
   background-color: var(--color-solved);
-  box-shadow: 1px 1px 1px black;
-  color: blue;
+  box-shadow: 0px 0px 5px black;
+  color: hsl(122, 100%, 50%);
 }
 .bug-card {
+  box-shadow: 0 0 10px hsla(0, 0%, 2%, 0.6);
   position: relative;
   text-align: left;
 }
@@ -86,7 +86,8 @@ button:hover {
 }
 
 .bug-card h2 {
-  margin-top: 0;
+  margin: 2rem;
+  margin-left: 0;
 }
 
 .bug-card p {
