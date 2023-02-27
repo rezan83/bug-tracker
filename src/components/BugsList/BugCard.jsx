@@ -4,7 +4,6 @@ function BugCard({ bug, handleDeleteBug, handleGlobalChange }) {
   const toggleSolved = () => {
     handleGlobalChange({ ...bug, solved: !bug.solved });
   };
-  // in a function and spesefic class so we might use it in other places
 
   const handleLocalChange = event => {
     const eventName = event.target.name;

@@ -2,14 +2,12 @@ import React from 'react';
 import BugCard from './BugCard';
 import './bugslist.css';
 
-function BugsList({ bugsDataSate, setBugsDataSate, handleGlobalChange, handleDeleteBug }) {
-  
-
+function BugsList({ bugsDataState, handleGlobalChange, handleDeleteBug }) {
   return (
     <div className="card-container">
       {/* <h1>Bugs</h1> */}
 
-      {bugsDataSate.map(bug => {
+      {bugsDataState.map(bug => {
         return (
           <BugCard
             bug={bug}

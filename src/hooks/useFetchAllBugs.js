@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
+
 export const useFetchAllBugs = () => {
-  const [bugsDataSate, setBugsDataSate] = useState([]);
+  const [bugsDataState, setBugsDataState] = useState([]);
   const [fetchingState, setFetchingState] = useState({
     isLoading: true,
     isError: false,
     isReady: false
   });
-  
+
   // might not work 500 req/day
   // const URL = 'https://bugtracker.free.beeceptor.com/';
 
@@ -14,7 +15,7 @@ export const useFetchAllBugs = () => {
   // const URL = 'http://localhost:8000/'
 
   // working server
-  const URL = 'https://flask-example-psi.vercel.app/'
+  const URL = 'https://flask-example-psi.vercel.app/';
 
   useEffect(() => {
     fetch(URL)
@@ -27,17 +28,13 @@ export const useFetchAllBugs = () => {
       })
       .then(data => {
         setFetchingState({ isReady: !!data.length, isLoading: false, isError: false });
-        setBugsDataSate(data);
+        setBugsDataState(data);
       })
       .catch(error => {
         console.log(error);
       });
 
-    
-    // return () => {
-    //   
-    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return { bugsDataSate, setBugsDataSate, fetchingState };
+  return { bugsDataState, setBugsDataState, fetchingState };
 };

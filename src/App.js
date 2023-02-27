@@ -5,46 +5,47 @@ import BugsList from './components/BugsList/BugsList';
 import BugForm from './components/BugForm';
 import errorImage from './images/error.svg';
 import loadingImage from './images/loading.svg';
-
 import BugsPeriorityPie from './components/Charts/BugsPriorityPie';
 import BugsSolvedPie from './components/Charts/BugsSolvedPie';
 import BugsSolvedByAssigneeBar from './components/Charts/BugsSolvedByAssigneeBar';
 import Charts from './components/Charts';
-import NavBar from './components/NavBar/NavBar';
+import NavBar from './components/Navigation/NavBar';
+import ScrollToTop from './components/Navigation/ScrollToTop';
+
 import { usePopulateCharts } from './hooks/usePopulateCharts';
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
 // import { bugsData } from './bugsData';
 // uncomment useFetchAllBugs related and comment bugsData to test remot api
 import { useFetchAllBugs } from './hooks/useFetchAllBugs';
-import ScrollToTop from './components/ScrollToTop';
 function App() {
   const [searchGlobalQuery, setSearchGlobalQuery] = useState('');
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
-  // const [bugsDataSate, setBugsDataSate] = useState([]);
+  // const [bugsDataState, setBugsDataState] = useState([]);
   const [bugsDataSearch, setBugsDataSearch] = useState([]);
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
   useEffect(() => {
     if (searchGlobalQuery) {
       setBugsDataSearch(
-        bugsDataSate.filter(
+        bugsDataState.filter(
           bug =>
             bug.title.toLowerCase().includes(searchGlobalQuery.toLowerCase()) ||
             bug.description.toLowerCase().includes(searchGlobalQuery.toLowerCase())
         )
       );
-    } 
+    }
     // else {
-    //   setBugsDataSate(bugsData);
+    //   setBugsDataState(bugsData);
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchGlobalQuery]);
 
   // uncomment useFetchAllBugs related and comment bugsData to test remot api
-  const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
-  const { priorityData, solvedData, solvedBy } = usePopulateCharts(bugsDataSate);
+  const { fetchingState, setBugsDataState, bugsDataState } = useFetchAllBugs();
+  const { priorityData, solvedData, solvedBy } = usePopulateCharts(bugsDataState);
+  
   const handleGlobalChange = editedBug => {
-    setBugsDataSate(
-      bugsDataSate.map(bug => (bug.id === editedBug.id ? { ...bug, ...editedBug } : bug))
+    setBugsDataState(
+      bugsDataState.map(bug => (bug.id === editedBug.id ? { ...bug, ...editedBug } : bug))
     );
     if (searchGlobalQuery) {
       setBugsDataSearch(
@@ -53,7 +54,7 @@ function App() {
     }
   };
   const handleDeleteBug = id => {
-    setBugsDataSate(bugsDataSate.filter(bug => bug.id !== id));
+    setBugsDataState(bugsDataState.filter(bug => bug.id !== id));
     if (searchGlobalQuery) {
       setBugsDataSearch(bugsDataSearch.filter(bug => bug.id !== id));
     }
@@ -94,11 +95,11 @@ function App() {
           path="/report"
           element={
             <>
-              <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
+              <BugForm bugsDataState={bugsDataState} setBugsDataState={setBugsDataState} />
               <BugsList
-                bugsDataSate={bugsDataSate}
+                bugsDataState={bugsDataState}
                 // bugsDataSearch={bugsDataSearch}
-                setBugsDataSate={setBugsDataSate}
+                setBugsDataState={setBugsDataState}
                 handleGlobalChange={handleGlobalChange}
                 handleDeleteBug={handleDeleteBug}
               />
@@ -111,8 +112,8 @@ function App() {
             <>
               <h2 className="search-page-header">Search Results:</h2>
               <BugsList
-                bugsDataSate={searchGlobalQuery ? bugsDataSearch : bugsDataSate}
-                setBugsDataSate={setBugsDataSate}
+                bugsDataState={searchGlobalQuery ? bugsDataSearch : bugsDataState}
+                setBugsDataState={setBugsDataState}
                 handleGlobalChange={handleGlobalChange}
                 handleDeleteBug={handleDeleteBug}
               />

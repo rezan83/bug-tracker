@@ -26,15 +26,12 @@ function NavBar({ setSearchGlobalQuery }) {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {/* <Nav.Link> */}
-                <Link to="/">Dashboard</Link>
-              {/* </Nav.Link> */}
-              {/* <Nav.Link> */}
-                <Link to="/report">Report</Link>
-              {/* </Nav.Link> */}
+              <Link to="/">Dashboard</Link>
+
+              <Link to="/report">Report</Link>
             </Nav>
           </Navbar.Collapse>
-          
+
           <div className="nav-search">
             <form onSubmit={searchQuery}>
               <button className="btn search-title-btn" onClick={searchQuery}>

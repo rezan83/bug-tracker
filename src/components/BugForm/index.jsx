@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './bugform.css';
 
-const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
+const BugForm = ({ bugsDataState, setBugsDataState }) => {
   const [newBug, setNewBug] = useState({
     id: '0',
     title: '',
@@ -23,7 +23,7 @@ const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
       newBug.assignee = newBug.reporter;
     }
 
-    setBugsDataSate([newBug, ...bugsDataSate]);
+    setBugsDataState([newBug, ...bugsDataState]);
     setNewBug({
       id,
       title: '',

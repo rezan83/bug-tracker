@@ -20,6 +20,7 @@ export const usePopulateCharts = bugsData => {
         accu.solvedData.solvedCount += 1;
       }
 
+      // how many each periority
       accu.priorityData[getPriorityName(bug.priority)] += 1;
       return accu;
     }, initialChartsData);
