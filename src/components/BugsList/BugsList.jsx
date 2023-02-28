@@ -2,23 +2,12 @@ import React from 'react';
 import BugCard from './BugCard';
 import './bugslist.css';
 
-function BugsList({ bugsDataSate, setBugsDataSate, handleGlobalChange }) {
-  const handleDeleteBug = id => {
-    // this is ok because you are copying the array
-    // and splice is probably faster than filter
-    // but index is a chanching thing so don't depend on it
-
-    // const newBugs = [...bugs];
-    // newBugs.splice(index, 1);
-    // setBugs(newBugs);
-    setBugsDataSate(bugsDataSate.filter(bug => bug.id !== id));
-  };
-
+function BugsList({ bugsDataState, handleGlobalChange, handleDeleteBug }) {
   return (
     <div className="card-container">
       {/* <h1>Bugs</h1> */}
 
-      {bugsDataSate.map(bug => {
+      {bugsDataState.map(bug => {
         return (
           <BugCard
             bug={bug}
