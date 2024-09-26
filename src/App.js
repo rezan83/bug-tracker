@@ -1,24 +1,32 @@
-// import { useState, useEffect } from 'react';
+// uncomment useFetchAllBugs related and comment bugsData to test remot api
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import BugsList from './components/BugsList/BugsList';
 import BugForm from './components/BugForm';
+// import errorImage from './images/error.svg';
+// import loadingImage from './images/loading.svg';
 
-import BugsPeriorityPie from './components/BugsPriorityPie';
-import BugsSolvedPie from './components/BugsSolvedPie';
+import BugsPeriorityPie from './components/Charts/BugsPriorityPie';
+import BugsSolvedPie from './components/Charts/BugsSolvedPie';
+import BugsSolvedByAssigneeBar from './components/Charts/BugsSolvedByAssigneeBar';
 import Charts from './components/Charts';
-// import { bugsData } from './bugsData';
 import NavBar from './components/NavBar/NavBar';
 import { usePopulateCharts } from './hooks/usePopulateCharts';
-import { useFetchAllBugs } from './hooks/useFetchAllBugs';
-//the Issues is going to load when we click on a btn , I made it here just to see the style
+// uncomment useFetchAllBugs related and comment bugsData to test remot api
+import { bugsData } from './bugsData';
+// uncomment useFetchAllBugs related and comment bugsData to test remot api
+// import { useFetchAllBugs } from './hooks/useFetchAllBugs';
 function App() {
- ;
-  // const [bugsDataSate, setBugsDataSate] = useState([]);
-  // useEffect(() => {
-  //   setBugsDataSate(bugsData);
-  // }, []);
-  const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
-  const { priorityData, solvedData } = usePopulateCharts(bugsDataSate);
+  // uncomment useFetchAllBugs related and comment bugsData to test remot api
+  const [bugsDataSate, setBugsDataSate] = useState([]);
+  // uncomment useFetchAllBugs related and comment bugsData to test remot api
+  useEffect(() => {
+    setBugsDataSate(bugsData);
+  }, []);
+
+  // uncomment useFetchAllBugs related and comment bugsData to test remot api
+  // const { fetchingState, setBugsDataSate, bugsDataSate } = useFetchAllBugs();
+  const { priorityData, solvedData, solvedBy } = usePopulateCharts(bugsDataSate);
   const handleGlobalChange = editedBug => {
     let oldBugIndex = bugsDataSate.findIndex(bug => bug.id === editedBug.id);
     let newBusData = [...bugsDataSate];
@@ -31,48 +39,48 @@ function App() {
         <NavBar />
       </header>
       <Routes>
+        {/* // uncomment useFetchAllBugs related and comment bugsData to test remot api */}
         <Route
           path="/"
           element={
-            <Charts>
-              <BugsPeriorityPie priorityData={priorityData} />
-              <BugsSolvedPie solvedData={solvedData} />
-            </Charts>
+            <>
+              {/* {
+              fetchingState.isLoading && (
+                <div className="loading">
+                  <img src={loadingImage} alt="loading" />
+                </div>
+              )} */}
+              {/* {fetchingState.isError && (
+                <div className="loading fetch-error">
+                  <h1>Sorry, please tray again later </h1> <img src={errorImage} alt="fetch data error" />
+                </div>
+              )} */}
+              {/* {fetchingState.isReady && ( */}
+                <Charts>
+                  <BugsPeriorityPie priorityData={priorityData} />
+                  <BugsSolvedPie solvedData={solvedData} />
+                  <BugsSolvedByAssigneeBar solvedBy={solvedBy} />
+                </Charts>
+              {/* )} */}
+            </>
           }
         />
         <Route
           path="/report"
           element={
             <>
-              {fetchingState.isLoading && <h1>Loading </h1>}
-              {fetchingState.isError && <h1>Error </h1>}
-              {fetchingState.isReady && (
-                <>
-                  <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
-                  <BugsList
-                    bugsDataSate={bugsDataSate}
-                    setBugsDataSate={setBugsDataSate}
-                    handleGlobalChange={handleGlobalChange}
-                  />{' '}
-                </>
-              )}
+              <>
+                <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
+                <BugsList
+                  bugsDataSate={bugsDataSate}
+                  setBugsDataSate={setBugsDataSate}
+                  handleGlobalChange={handleGlobalChange}
+                />
+              </>
             </>
           }
         />
       </Routes>
-      {/* {fetchingState.isLoading && <h1>Loading </h1>}
-      {fetchingState.isError && <h1>Error </h1>}
-      {fetchingState.isReady && (
-        <>
-          <BugForm bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} />
-          <BugsList bugsDataSate={bugsDataSate} setBugsDataSate={setBugsDataSate} handleGlobalChange={handleGlobalChange} />{' '}
-        </>
-      )} */}
-
-      {/* <div className="charts">
-        <BugsPeriorityPie priorityData={priorityData} />
-        <BugsSolvedPie solvedData={solvedData} />
-      </div> */}
     </div>
   );
 }

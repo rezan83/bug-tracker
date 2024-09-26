@@ -1,21 +1,32 @@
 import { useEffect, useState } from 'react';
+import { getPriorityName } from '../helpers';
 
 export const usePopulateCharts = bugsData => {
-  const [solvedData, setSolvedData] = useState([]);
-  const [priorityData, setPriorityData] = useState([]);
+  const initialChartsData = {
+    priorityData: { low: 0, normal: 0, critical: 0 },
+    solvedData: { notSolvedCount: 0, solvedCount: 0 },
+    solvedBy: {}
+  };
+  const [chartsData, setChartsData] = useState(initialChartsData);
   useEffect(() => {
-    let solvedCount = bugsData.filter(bug => bug.solved).length;
-    setSolvedData([bugsData.length - solvedCount, solvedCount]);
-    setPriorityData(
-      bugsData.reduce(
-        (accu, next) => {
-          accu[next.priority - 1] += 1;
-          return accu;
-        },
-        [0, 0, 0]
-      )
-    );
+    let calcData = bugsData.reduce((accu, bug) => {
+      if (!Object(accu.solvedBy).hasOwnProperty(bug.assignee)) {
+        accu.solvedBy[bug.assignee] = { yes: 0, no: 0 };
+      }
+      if (!bug.solved) {
+        accu.solvedBy[bug.assignee].no += 1;
+      } else {
+        accu.solvedBy[bug.assignee].yes += 1;
+        accu.solvedData.solvedCount += 1;
+      }
+
+      accu.priorityData[getPriorityName(bug.priority)] += 1;
+      return accu;
+    }, initialChartsData);
+    calcData.solvedData.notSolvedCount = bugsData.length - calcData.solvedData.solvedCount;
+    setChartsData(calcData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bugsData]);
 
-  return { solvedData, priorityData };
+  return chartsData;
 };

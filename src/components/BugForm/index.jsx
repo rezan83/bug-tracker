@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './bugform.css'
+import './bugform.css';
 
 const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
   const [newBug, setNewBug] = useState({
@@ -12,11 +12,16 @@ const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
     title: '',
     description: '',
     priority: 1,
-    solved: false
+    solved: false,
+    reporter: '',
+    assignee: ''
   });
   const handleAddBug = event => {
     event.preventDefault();
     const id = Math.random() + '';
+    if (newBug.assignee === '') {
+      newBug.assignee = newBug.reporter;
+    }
 
     setBugsDataSate([newBug, ...bugsDataSate]);
     setNewBug({
@@ -24,7 +29,9 @@ const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
       title: '',
       description: '',
       priority: 1,
-      solved: false
+      solved: false,
+      reporter: '',
+      assignee: ''
     });
   };
   const handleChange = event => {
@@ -57,14 +64,32 @@ const BugForm = ({ bugsDataSate, setBugsDataSate }) => {
           required
         />
       </Form.Group>
+      <Form.Group as={Row}>
+        <Form.Label>Reporter</Form.Label>
+        <Form.Control
+          type="text"
+          name="reporter"
+          id="reporter"
+          value={newBug.reporter}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
+      <Form.Group as={Row}>
+        <Form.Label>Assignee</Form.Label>
+        <Form.Control
+          type="text"
+          name="assignee"
+          id="assignee"
+          value={newBug.assignee}
+          placeholder="same as reporter if left empty"
+          onChange={handleChange}
+        />
+      </Form.Group>
 
       <Form.Group as={Row}>
         <Form.Label>Priority</Form.Label>
-        <Form.Select
-          name="priority"
-          id="priority"
-          value={newBug.priority}
-          onChange={handleChange}>
+        <Form.Select name="priority" id="priority" value={newBug.priority} onChange={handleChange}>
           <option value="1">Low</option>
           <option value="2">Normal</option>
           <option value="3">Critical</option>
